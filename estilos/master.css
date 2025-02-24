@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
-@import url('https://fonts.cdnfonts.com/css/amateur-dirty');body {
+body {
     background-image: url('../source/fondo2.jpg');
     background-size: cover;
     background-position: center;
@@ -37,10 +37,41 @@ label{
     color: rgb(237, 237, 126);
 }
 h2,h3{
-    color: rgb(237, 237, 126);
-    font-family: 'Amateur Dirty', sans-serif;
-    font-family: 'Amateur Naked', sans-serif;
-    font-family: 'Amateur Slash', sans-serif;
+    color: rgb(235, 238, 39);
     font-size: 50px; 
 
+}
+input{
+    box-shadow: 0px 17px 52px -6px rgba(52, 49, 11, 1);
+}
+.tarjetaReg{
+    backdrop-filter: blur(30px);box-shadow: 0px 0px 17px 3px rgba(232, 237, 181, 0.56);
+    background-color: rgb(2, 18, 22);
+}
+.btnReg{
+    background-color: rgb(240, 240, 147);
+    border-color: rgb(161, 214, 29);
+    transition: .4s ease-in-out;
+    border-radius: 2px;
+}
+.btnReg:hover{
+    background-color: rgb(255, 255, 32);
+    border-color: rgb(161, 214, 29);
+    color: rgb(0, 8, 7);
+    font-size: 20px;
+    box-shadow: 0px 5px 10px 0px rgb(202, 255, 201);
+    border-radius: 6px;
+}
+.btnIngresoDirecto{
+    background-color: rgb(120, 120, 189);
+    border-color: rgb(120, 120, 189);
+    transition: .4s ease-in-out;
+    border-radius: 2px;
+}
+.btnIngresoDirecto:hover{
+    background-color: rgb(80, 80, 227);
+    border-color: rgb(46, 46, 250);
+    font-size: 18px;
+    box-shadow: 0px 5px 10px 0px rgb(202, 255, 201);
+    border-radius: 6px;
 }
