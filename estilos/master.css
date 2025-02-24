@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+@import url('https://fonts.cdnfonts.com/css/amateur-dirty');body {
+    background-image: url('../source/fondo2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: "Audiowide", serif;
+}
+
+h1 {
+    font-family: "Audiowide", serif;
+    font-size: 36px;
+    color: #ef0d0d;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.bg-primary {
+    background-color: #444d52c8 !important;
+}
+
+.margin-top {
+    margin-top: 30px;
+}
+
+.margin-bottom {
+    margin-bottom: 40px;
+}
+
+.margin-top-boton {
+    margin-top: 20px;
+}
+label{
+    font-size: 25px;
+    color: rgb(237, 237, 126);
+}
+h2,h3{
+    color: rgb(237, 237, 126);
+    font-family: 'Amateur Dirty', sans-serif;
+    font-family: 'Amateur Naked', sans-serif;
+    font-family: 'Amateur Slash', sans-serif;
+    font-size: 50px;
+    
+
+}
