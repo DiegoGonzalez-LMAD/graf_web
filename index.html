@@ -8,14 +8,16 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./estilos/master.css">
     <title>Inicio de sesion</title>
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script src="/js/facebook.js"></script>
 </head>
 
 <body>
     <div class="container">
 
-        <div class="row justify-content-center" style="margin-top: 60px;">
+        <div class="row justify-content-center" style="margin-top: 40px;">
             <div class="col-md-6">
-                <div class="bg-primary text-white p-3">
+                <div class=" text-white p-3 tarIngr">
                     <h2 class="text-center margin-top">Inicio de sesión</h2>
                     <h3 class="text-center">¡Estas a punto de entrar a otra galaxia!</h3>
                     <div class="row justify-content-center">
@@ -32,12 +34,17 @@
                                         placeholder="Introduce contraseña">
                                 </div>
                                 <div class="text-center margin-top">
-                                    <button type="submit" class="btn btn-light w-50">Entrar</button>
+                                    <button type="submit" class="btn btn-light w-50 btnJugar">Entrar</button>
                                 </div>
                             </form>
                             <div class="text-center margin-top" style="margin-bottom: 40px;">
-                                <small class="margin-top">Si aun no eres usuario <a href="registro.html" class="btn btn-secondary">registrate</a>
+                                <small class="margin-top">Si aun no eres usuario <a href="registro.html" class="btn btn-secondary btnUnete">Unete</a>
                                     aqui</small>
+                            </div>
+                            <div class="text-center margin-top" style="margin-bottom: 40px;">
+                                <button class="btn btnFacebook" onclick="checkLoginState()">Ingresa con Facebook</button>
+                                 
+                                    
                             </div>
                         </div>
                     </div>

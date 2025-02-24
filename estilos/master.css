@@ -45,8 +45,9 @@ input{
     box-shadow: 0px 17px 52px -6px rgba(52, 49, 11, 1);
 }
 .tarjetaReg{
-    backdrop-filter: blur(30px);box-shadow: 0px 0px 17px 3px rgba(232, 237, 181, 0.56);
-    background-color: rgb(2, 18, 22);
+    backdrop-filter: blur(30px);
+    box-shadow: 0px 0px 17px 3px rgba(232, 237, 181, 0.56);
+    background-color: rgba(2, 18, 22, 0.467);
 }
 .btnReg{
     background-color: rgb(240, 240, 147);
@@ -74,4 +75,60 @@ input{
     font-size: 18px;
     box-shadow: 0px 5px 10px 0px rgb(202, 255, 201);
     border-radius: 6px;
+}
+html::-webkit-scrollbar {
+    width: 8px;
+}
+
+html::-webkit-scrollbar-track {
+    background-color: black;
+}
+
+html::-webkit-scrollbar-thumb {
+   background-color: rgb(241, 241, 137);
+   border-radius: 30px;
+   height: 20px;
+    
+}
+.tarIngr{
+    border-radius: 10px;
+    backdrop-filter: blur(30px);
+    box-shadow: 0px 0px 17px 3px rgba(232, 237, 181, 0.56);
+    background-color: rgba(2, 18, 22, 0.467);
+
+}
+.btnUnete{
+    background-color: rgb(237, 211, 118);
+    border-color: rgb(237, 211, 118);
+    transition: .4s ease-in-out;
+    border-radius: 2px;
+}
+.btnUnete:hover{
+    background-color: rgb(224, 253, 39);
+    border-color: rgb(224, 253, 39);
+    transition: .4s ease-in-out;
+    border-radius: 2px;
+    color: black;
+    font-size: 18px;
+    box-shadow: 0px 5px 10px 0px rgba(245, 255, 201, 0.756);
+    border-radius: 6px;
+}
+.btnFacebook{
+    background-color: 	#4267b2a3;
+    color: white;
+}
+.btnFacebook:hover{
+    background-color: 	#4267B2;
+    box-shadow: 0px 3px 10px 0px rgba(102, 149, 177, 0.756);
+}
+.btnJugar{
+    background-color: rgb(206, 249, 141);
+    border-color: rgb(206, 249, 141);
+    transition: .3s ease-in-out;
+}
+.btnJugar:hover{
+    background-color: rgb(169, 255, 41);
+    border-color: rgb(169, 255, 41);
+    box-shadow: 0px 3px 10px 0px rgba(108, 240, 108, 0.756);
+    font-size: 17px;
 }
