@@ -6,6 +6,13 @@ body {
     background-attachment: fixed;
     font-family: "Audiowide", serif;
 }
+.bodyMenu {
+    background-image: url('../source/fondo2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: "Audiowide", serif;
+}
 
 h1 {
     font-family: "Audiowide", serif;
