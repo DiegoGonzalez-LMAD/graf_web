@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canvas en HTML</title>
+    <title>Pantalla del Juego</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@v0.174.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.174.0/examples/jsm/"
+        }
+      }
+    </script>
 </head>
 <body style="overflow: hidden; background-color: black;">
-   
-  <div style="width: 200px; height: 90vh; opacity: 0.2; border-right: 5px solid; border-color: #394c90 ; background:linear-gradient(to right, #ffffff00,#3c519b); position: absolute; left: 0; top: 0;"></div>
-  <div style="width: 100vw; height: 95px; opacity: 0.2;  background:radial-gradient(ellipse, #3c519b,#ffffff00); position: absolute; bottom: 0; left: 0;"></div>
-  <div style="width: 200px; height: 90vh; opacity: 0.2;border-left: 5px solid; border-color: #394c90; background:linear-gradient(to left, #ffffff00,#3c519b); position: absolute; right: 0; top: 0;" ></div>
-  <div style="width: 200px; height: 91px; opacity: 0.2; border-top: 5px solid;border-left: 5px solid; border-right: 5px solid; border-color: #394c90;background:radial-gradient(circle, #ffffff00,#3c519b); position: absolute; bottom: 95px; left: 45%;"></div>
-
-  <div style="width: 600px; height: 25px; opacity: 0.2; border: 5px solid; border-color: #394c90;background-color: rgb(127, 155, 255); position: absolute;top: 0; left: 33%;"></div>
-
-  <div style="width: 80vw; height: 93px; opacity: 0.1; border-top: 5px solid; border-color: #394c90 ;  position: absolute; bottom: 0; left: 10%;"></div>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>
