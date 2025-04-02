@@ -18,7 +18,7 @@ const texturaDron = new THREE.MeshStandardMaterial({
     emissiveMap: emissiveMap, 
     metalnessMap: metalnessMap, 
     transparent: true, 
-    emissive: new THREE.Color(0x000000),
+    emissive: new THREE.Color(0xff0000),
     metalness: 1.0, 
     roughness: 0.5 
 });
