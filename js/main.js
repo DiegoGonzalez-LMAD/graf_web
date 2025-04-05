@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from '/node_modules/three/examples/jsm/controls/OrbitControls.js';
 import { FBXLoader } from '/node_modules/three/examples/jsm/loaders/FBXLoader.js';
+import { OBJLoader } from '/node_modules/three/examples/jsm/loaders/OBJLoader.js';
 import { GLTFLoader } from '/node_modules/three/examples/jsm/loaders/GLTFLoader.js';
 import { texturaDron } from '/Modelos/PER_PRIN/PP_1/scriptTXT_PP1.js';
 import { texturaDron2 } from '/Modelos/PER_PRIN/PP_2/scriptTXT_PP2.js';
@@ -8,6 +9,11 @@ import { texturaESC1 } from '/Modelos/ESCENARIOS/ESC1/scriptTXT_ESC1.js';
 import { texturaGALAXY } from '/Modelos/ESCENARIOS/SKYBOX/scriptTXT_SKY.js';
 import { texturaEnemy1 } from '/Modelos/ENEMIGOS/ENEMY_1/scriptTXT_EN1.js';
 import { texturaENEM2 } from '/Modelos/ENEMIGOS/ENEMY_2/scriptTXT_EN2.js';
+import { texturasatelite } from '/Modelos/ambientacion/satelite/scriptTXT_satelite.js';
+import { texturagalileo } from '/Modelos/ambientacion/galileo/scriptTXT.galileo.js';
+import { MTLLoader } from '/node_modules/three/examples/jsm/loaders/MTLLoader.js';
+
+
 
 const loader = new THREE.TextureLoader();
 
@@ -45,6 +51,135 @@ const texturaDronCom = texturaDron;
 const texturaDron2Com = texturaDron2;
 const texturaEscen1 = texturaDron2;
 const texturaSkybix = texturaGALAXY;
+const texturasatelite2 = texturasatelite;
+
+
+// Cargar el archivo MTL
+const mtlLoader = new MTLLoader();
+mtlLoader.load('/Modelos/ambientacion/estacion/ScifiStation_obj.mtl', function (materials) {
+    materials.preload();  
+    const objLoader = new OBJLoader();
+    objLoader.setMaterials(materials);
+    objLoader.load('/Modelos/ambientacion/estacion/ScifiStation_obj.obj', function (object) {
+        object.position.set(-800, 0, 0);
+        object.scale.set(1, 1, 1);
+        scene.add(object);  
+    }, undefined, function (error) {
+        console.error('Error al cargar el modelo OBJ:', error);
+    });
+}, undefined, function (error) {
+    console.error('Error al cargar el archivo MTL:', error);
+});
+
+
+
+
+
+// Cargar el modelo galileo
+const ModeloGalileo = new GLTFLoader();
+ModeloGalileo.load('/Modelos/ambientacion/galileo/scene.gltf', function (object) {
+    console.log(object);
+    const loadedObject = object.scene || object;
+
+    if (loadedObject instanceof THREE.Object3D) {
+        loadedObject.traverse(function (child) {
+           
+        });
+
+        loadedObject.position.set(400, 0, -30);
+        loadedObject.scale.set(10, 10, 10);
+        scene.add(loadedObject);
+
+        const mixer = new THREE.AnimationMixer(loadedObject);
+
+        if (object.animations && object.animations.length) {
+            const clips = object.animations;
+
+            function update() {
+                const delta = clock1.getDelta();
+                mixer.update(delta);
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+                renderer.render(scene, camera);
+                update();
+            }
+
+            animate();
+
+            const clip = THREE.AnimationClip.findByName(clips, 'Take001');
+            if (clip) {
+                const action = mixer.clipAction(clip);
+                action.play();
+            }
+
+            clips.forEach(function (clip) {
+                mixer.clipAction(clip).play();
+            });
+        } else {
+            console.error('El modelo no tiene animaciones.');
+        }
+    } else {
+        console.error('Error: El objeto cargado no es válido para agregar a la escena.');
+    }
+}, undefined, function (error) {
+    console.error('Error al cargar el modelo GLTF:', error);
+});
+
+
+// Cargar el modelo satelite
+const ModeloSatelite = new OBJLoader();
+ModeloSatelite.load('/Modelos/ambientacion/satelite/SatelliteSubstancePainter.obj', function (object) {
+    if (object instanceof THREE.Object3D) {
+        object.traverse(function (child) {
+            if (child.isMesh) {
+                child.material = texturasatelite2;
+            }
+        });
+
+        object.position.set(250, 0, -50);
+        object.scale.set(10, 10,10);
+        scene.add(object);
+
+        const mixer = new THREE.AnimationMixer(object);
+
+        if (object.animations && object.animations.length) {
+            const clips = object.animations;
+
+            function update() {
+                const delta = clock1.getDelta();
+                mixer.update(delta);
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+                renderer.render(scene, camera);
+                update();
+            }
+
+            animate();
+
+            const clip = THREE.AnimationClip.findByName(clips, 'Take001');
+            if (clip) {
+                const action = mixer.clipAction(clip);
+                action.play();
+            }
+
+            clips.forEach(function (clip) {
+                mixer.clipAction(clip).play();
+            });
+
+        } else {
+            console.error('El modelo no tiene animaciones.');
+        }
+    } else {
+        console.error('Error: El objeto cargado no es válido para agregar a la escena.');
+    }
+}, undefined, function (error) {
+    console.error('Error al cargar el modelo FBX:', error);
+});
+
 
 // Cargar el modelo FBX
 const ModeloPP = new FBXLoader();
@@ -280,3 +415,4 @@ function animate() {
 }
 
 animate(); // Iniciar animación
+
