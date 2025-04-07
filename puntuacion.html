@@ -8,6 +8,16 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./estilos/puntuacion.css">
     <title>Puntuación</title>
+    <script>
+        window.onload = () => {
+          const nombreUsuario = sessionStorage.getItem("nombre");
+    
+          if (!nombreUsuario) {
+              window.location.href = "index.html";
+              return;
+          }
+        };
+      </script>
 </head>
 
 <body>

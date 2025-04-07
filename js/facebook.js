@@ -21,12 +21,10 @@ window.fbAsyncInit = function () {
 
 function checkLoginState() {
     FB.api('/me', { fields: 'name' },function (response) {
-        alert(JSON.stringify(response));
-    
         var nombre = sessionStorage.getItem("nombre");
         sessionStorage.setItem("nombre",response.name);
         localStorage.setItem("id",response.id);
-
+        window.location.href = "menuPrincipal.html";
         statusChangeCallback(response);
     });
 }

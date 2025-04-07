@@ -2,15 +2,15 @@ import * as THREE from 'three';
 
 // Cargar las texturas
 const loader = new THREE.TextureLoader();
-const baseColor = loader.load('/Modelos/ambientacion/baseMilitar/texturas/baseMilitarDiffuse.jpg');
-const normalMap = loader.load('/Modelos/ambientacion/baseMilitar/texturas/baseMilitarNormal.jpg');
-const roughnessMap = loader.load('/Modelos/ambientacion/baseMilitar/texturas/baseMilitarRoughness.jpg');
-const emissiveMap = loader.load('/Modelos/ambientacion/baseMilitar/texturas/baseMilitarLights.jpg');
-const metalnessMap = loader.load('/Modelos/ambientacion/baseMilitar/texturas/baseMilitarMetal.jpg');
+const baseColor = loader.load('Modelos/ambientacion/baseMilitar/texturas/baseMilitarDiffuse.jpg');
+const normalMap = loader.load('Modelos/ambientacion/baseMilitar/texturas/baseMilitarNormal.jpg');
+const roughnessMap = loader.load('Modelos/ambientacion/baseMilitar/texturas/baseMilitarRoughness.jpg');
+const emissiveMap = loader.load('Modelos/ambientacion/baseMilitar/texturas/baseMilitarLights.jpg');
+const metalnessMap = loader.load('Modelos/ambientacion/baseMilitar/texturas/baseMilitarMetal.jpg');
 
 // Crear un material y asignarle las texturas
 const texturaBaseMilitar = new THREE.MeshStandardMaterial({
-    map: baseColor,
+    map: baseColor*5,
     normalMap: normalMap,
     roughnessMap: roughnessMap,
     emissiveMap: emissiveMap,
