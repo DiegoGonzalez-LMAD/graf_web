@@ -11,11 +11,7 @@
     <script>
         window.onload = () => {
           const nombreUsuario = sessionStorage.getItem("nombre");
-    
-          if (!nombreUsuario) {
-              window.location.href = "index.html";
-              return;
-          }
+          
           if (nombreUsuario) {
               window.location.href = "menuPrincipal.html";
               return;

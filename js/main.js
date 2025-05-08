@@ -202,6 +202,17 @@ ModeloSatelite.load('./Modelos/ambientacion/satelite/SatelliteSubstancePainter.o
 
 
 // Cargar el modelo FBX
+let personajePrincipal;
+const velocidad = 300;
+const teclasPresionadas = {
+    w: false,
+    a: false,
+    s: false,
+    d: false,
+};
+
+const mouse = new THREE.Vector2();
+
 const ModeloPP = new FBXLoader();
 ModeloPP.load('./Modelos/PER_PRIN/PP_1/DRONE.fbx', function (object) {
     if (object instanceof THREE.Object3D) {
@@ -246,12 +257,88 @@ ModeloPP.load('./Modelos/PER_PRIN/PP_1/DRONE.fbx', function (object) {
         } else {
             console.error('El modelo no tiene animaciones.');
         }
+        personajePrincipal=object;
     } else {
         console.error('Error: El objeto cargado no es válido para agregar a la escena.');
     }
 }, undefined, function (error) {
     console.error('Error al cargar el modelo FBX:', error);
 });
+
+document.addEventListener('keydown', (event) => {
+    const key = event.key.toLowerCase();
+    if (key in teclasPresionadas) teclasPresionadas[key] = true;
+});
+
+document.addEventListener('keyup', (event) => {
+    const key = event.key.toLowerCase();
+    if (key in teclasPresionadas) teclasPresionadas[key] = false;
+});
+
+document.addEventListener('mousemove', (event) => {
+    // Coordenadas normalizadas del mouse (-1 a 1)
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+});
+
+function actualizarPersonaje(delta) {
+    if (!personajePrincipal) return;
+
+    // Movimiento
+    // Input vector en 2D (sin rotación todavía)
+    const input = new THREE.Vector3(
+        (teclasPresionadas.a ? 1 : 0) - (teclasPresionadas.d ? 1 : 0),
+        0,
+        (teclasPresionadas.w ? 1 : 0) - (teclasPresionadas.s ? 1 : 0)
+    );
+
+    if (input.lengthSq() > 0) {
+        input.normalize();
+
+        // Aplicamos la rotación del personaje al input
+        const direccionMovimiento = input.applyQuaternion(personajePrincipal.quaternion);
+
+        // Movemos al personaje en esa dirección
+        direccionMovimiento.multiplyScalar(velocidad * delta);
+        personajePrincipal.position.add(direccionMovimiento);
+    }
+
+    
+
+    // Rotación hacia el mouse
+    const vectorMouse = new THREE.Vector3(mouse.x, mouse.y, 0.5);
+    vectorMouse.unproject(camera);
+
+    const direccion = vectorMouse.sub(camera.position).normalize();
+    const distancia = (personajePrincipal.position.y - camera.position.y) / direccion.y;
+    const puntoEnPlano = camera.position.clone().add(direccion.multiplyScalar(distancia));
+
+    const direccionPersonaje = puntoEnPlano.clone().sub(personajePrincipal.position);
+    direccionPersonaje.y = 0;
+    direccionPersonaje.normalize();
+
+    const rotacionY = Math.atan2(direccionPersonaje.x, direccionPersonaje.z);
+    const quaternionObjetivo = new THREE.Quaternion().setFromAxisAngle(
+        new THREE.Vector3(0, 1, 0), rotacionY
+    );
+    personajePrincipal.quaternion.slerp(quaternionObjetivo, 0.1);
+
+}
+
+
+function actualizarCamara() {
+    if (!personajePrincipal) return;
+
+    const camOffset = new THREE.Vector3(0, 300, -200); 
+    const offsetRotado = camOffset.clone().applyQuaternion(personajePrincipal.quaternion);
+    const nuevaPosCamara = personajePrincipal.position.clone().add(offsetRotado);
+    
+    camera.position.lerp(nuevaPosCamara, 0.1);
+    camera.lookAt(personajePrincipal.position.clone().add(new THREE.Vector3(0, 50, 0)));
+
+}
+
+
 
 // Cargar otro modelo FBX para el segundo personaje
 const ModeloPP2 = new FBXLoader();
@@ -422,14 +509,17 @@ Enemy2.load('./Modelos/ENEMIGOS/ENEMY_2/BUG.fbx', function (object) {
     console.error('Error al cargar el modelo FBX:', error);
 });
 
+const clockPP = new THREE.Clock();
 
-
-// Función de animación
 function animate() {
-    
-    controls.update(); // Actualiza el control orbital
-    renderer.render(scene, camera);
     requestAnimationFrame(animate);
+
+    const delta = clockPP.getDelta();
+
+    actualizarPersonaje(delta);
+    actualizarCamara();
+
+    renderer.render(scene, camera);
 }
 
 animate(); // Iniciar animación
