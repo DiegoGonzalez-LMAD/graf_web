@@ -58,147 +58,147 @@ const texturaEscen1 = texturaDron2;
 const texturaSkybix = texturaGALAXY;
 const texturasatelite2 = texturasatelite;
 
-// Cargar el archivo MTL
-const mtlLoader = new MTLLoader();
-mtlLoader.load('./Modelos/ambientacion/estacion/ScifiStation_obj.mtl', function (materials) {
-    materials.preload();
-    const objLoader = new OBJLoader();
-    objLoader.setMaterials(materials);
-    objLoader.load('./Modelos/ambientacion/estacion/ScifiStation_obj.obj', function (object) {
-        object.position.set(-800, 0, 700);
-        object.scale.set(2, 2, 2);
-        scene.add(object);
-    }, undefined, function (error) {
-        console.error('Error al cargar el modelo OBJ:', error);
-    });
-}, undefined, function (error) {
-    console.error('Error al cargar el archivo MTL:', error);
-});
+// // Cargar el archivo MTL
+// const mtlLoader = new MTLLoader();
+// mtlLoader.load('./Modelos/ambientacion/estacion/ScifiStation_obj.mtl', function (materials) {
+//     materials.preload();
+//     const objLoader = new OBJLoader();
+//     objLoader.setMaterials(materials);
+//     objLoader.load('./Modelos/ambientacion/estacion/ScifiStation_obj.obj', function (object) {
+//         object.position.set(-800, 0, 700);
+//         object.scale.set(2, 2, 2);
+//         scene.add(object);
+//     }, undefined, function (error) {
+//         console.error('Error al cargar el modelo OBJ:', error);
+//     });
+// }, undefined, function (error) {
+//     console.error('Error al cargar el archivo MTL:', error);
+// });
 
-// Cargar el modelo galileo
-const ModeloGalileo = new GLTFLoader();
-ModeloGalileo.load('./Modelos/ambientacion/galileo/scene.gltf', function (object) {
-    const loadedObject = object.scene || object;
+// // Cargar el modelo galileo
+// const ModeloGalileo = new GLTFLoader();
+// ModeloGalileo.load('./Modelos/ambientacion/galileo/scene.gltf', function (object) {
+//     const loadedObject = object.scene || object;
 
-    if (loadedObject instanceof THREE.Object3D) {
-        loadedObject.traverse(function (child) {
+//     if (loadedObject instanceof THREE.Object3D) {
+//         loadedObject.traverse(function (child) {
 
-        });
-        loadedObject.position.set(400, 0, -30);
-        loadedObject.scale.set(10, 10, 10);
-        scene.add(loadedObject);
-    } else {
-        console.error('Error: El objeto cargado no es válido para agregar a la escena.');
-    }
-}, undefined, function (error) {
-    console.error('Error al cargar el modelo GLTF:', error);
-});
+//         });
+//         loadedObject.position.set(400, 0, -30);
+//         loadedObject.scale.set(10, 10, 10);
+//         scene.add(loadedObject);
+//     } else {
+//         console.error('Error: El objeto cargado no es válido para agregar a la escena.');
+//     }
+// }, undefined, function (error) {
+//     console.error('Error al cargar el modelo GLTF:', error);
+// });
 
-// Cargar el modelo base militar
-const ModeloBaseMilitar = new OBJLoader();
-ModeloBaseMilitar.load('./Modelos/ambientacion/baseMilitar/baseMilitar.obj', function (object) {
-    if (object instanceof THREE.Object3D) {
-        object.traverse(function (child) {
-            if (child.isMesh) {
-                child.material = texturaBaseMilitar;
-            }
-        });
-        object.position.set(-500, -10, -500);
-        object.scale.set(80, 80, 80);
-        scene.add(object);
-    } else {
-        console.error('Error: El objeto cargado no es válido para agregar a la escena.');
-    }
-}
-    , undefined, function (error) {
-        console.error('Error al cargar el modelo base militar:', error);
-    }
-);
+// // Cargar el modelo base militar
+// const ModeloBaseMilitar = new OBJLoader();
+// ModeloBaseMilitar.load('./Modelos/ambientacion/baseMilitar/baseMilitar.obj', function (object) {
+//     if (object instanceof THREE.Object3D) {
+//         object.traverse(function (child) {
+//             if (child.isMesh) {
+//                 child.material = texturaBaseMilitar;
+//             }
+//         });
+//         object.position.set(-500, -10, -500);
+//         object.scale.set(80, 80, 80);
+//         scene.add(object);
+//     } else {
+//         console.error('Error: El objeto cargado no es válido para agregar a la escena.');
+//     }
+// }
+//     , undefined, function (error) {
+//         console.error('Error al cargar el modelo base militar:', error);
+//     }
+// );
 
-// Cargar el modelo edificio
-const ModeloEdificio = new OBJLoader();
-ModeloEdificio.load('./Modelos/ambientacion/edificio/edificio.obj', function (object) {
-    if (object instanceof THREE.Object3D) {
-        object.traverse(function (child) {
-            if (child.isMesh) {
-                child.material = texturaEdificio;
-            }
-        });
-        object.position.set(800, -10, -300);
-        object.scale.set(80, 80, 80);
-        scene.add(object);
-    } else {
-        console.error('Error: El objeto cargado no es válido para agregar a la escena.');
-    }
-}
-    , undefined, function (error) {
-        console.error('Error al cargar el modelo edificio:', error);
-    }
-);
+// // Cargar el modelo edificio
+// const ModeloEdificio = new OBJLoader();
+// ModeloEdificio.load('./Modelos/ambientacion/edificio/edificio.obj', function (object) {
+//     if (object instanceof THREE.Object3D) {
+//         object.traverse(function (child) {
+//             if (child.isMesh) {
+//                 child.material = texturaEdificio;
+//             }
+//         });
+//         object.position.set(800, -10, -300);
+//         object.scale.set(80, 80, 80);
+//         scene.add(object);
+//     } else {
+//         console.error('Error: El objeto cargado no es válido para agregar a la escena.');
+//     }
+// }
+//     , undefined, function (error) {
+//         console.error('Error al cargar el modelo edificio:', error);
+//     }
+// );
 
-//Cargar el modelo nave
-const ModeloNave = new OBJLoader();
-ModeloNave.load('./Modelos/ambientacion/nave/nave.obj', function (object) {
-    if (object instanceof THREE.Object3D) {
-        object.traverse(function (child) {
-            if (child.isMesh) {
-                child.material = texturaNave;
-            }
-        });
-        object.position.set(200, 30, -400);
-        object.scale.set(10, 10, 10);
-        scene.add(object);
-    } else {
-        console.error('Error: El objeto nave cargado no es válido para agregar a la escena.');
-    }
-}
-    , undefined, function (error) {
-        console.error('Error al cargar el modelo nave:', error);
-    }
-);
+// //Cargar el modelo nave
+// const ModeloNave = new OBJLoader();
+// ModeloNave.load('./Modelos/ambientacion/nave/nave.obj', function (object) {
+//     if (object instanceof THREE.Object3D) {
+//         object.traverse(function (child) {
+//             if (child.isMesh) {
+//                 child.material = texturaNave;
+//             }
+//         });
+//         object.position.set(200, 30, -400);
+//         object.scale.set(10, 10, 10);
+//         scene.add(object);
+//     } else {
+//         console.error('Error: El objeto nave cargado no es válido para agregar a la escena.');
+//     }
+// }
+//     , undefined, function (error) {
+//         console.error('Error al cargar el modelo nave:', error);
+//     }
+// );
 
-// Cargar el modelo puerto espacial
-let ModeloPuertoEspacial = new OBJLoader();
-ModeloPuertoEspacial.load('./Modelos/ambientacion/puertoEspacial/puertoEspacial.obj', function (object) {
-    if (object instanceof THREE.Object3D) {
-        object.traverse(function (child) {
-            if (child.isMesh) {
-                child.material = texturaPuertoEspcial;
-            }
-        });
-        object.position.set(980, -200, 300);
-        object.scale.set(50, 50, 50);
-        object.rotation.y = 3 * Math.PI / 2;; // Rotar el objeto 90 grados en el eje Y
-        //object.rotation.x = Math.PI; // Rotar el objeto 90 grados en el eje X
-        //object.rotation.z = Math.PI; // Rotar el objeto 90 grados en el eje Z
-        scene.add(object);
-    } else {
-        console.error('Error: El objeto cargado no es válido para agregar a la escena.');
-    }
-}
-    , undefined, function (error) {
-        console.error('Error al cargar el modelo puerto espacial:', error);
-    }
-);
+// // Cargar el modelo puerto espacial
+// let ModeloPuertoEspacial = new OBJLoader();
+// ModeloPuertoEspacial.load('./Modelos/ambientacion/puertoEspacial/puertoEspacial.obj', function (object) {
+//     if (object instanceof THREE.Object3D) {
+//         object.traverse(function (child) {
+//             if (child.isMesh) {
+//                 child.material = texturaPuertoEspcial;
+//             }
+//         });
+//         object.position.set(980, -200, 300);
+//         object.scale.set(50, 50, 50);
+//         object.rotation.y = 3 * Math.PI / 2;; // Rotar el objeto 90 grados en el eje Y
+//         //object.rotation.x = Math.PI; // Rotar el objeto 90 grados en el eje X
+//         //object.rotation.z = Math.PI; // Rotar el objeto 90 grados en el eje Z
+//         scene.add(object);
+//     } else {
+//         console.error('Error: El objeto cargado no es válido para agregar a la escena.');
+//     }
+// }
+//     , undefined, function (error) {
+//         console.error('Error al cargar el modelo puerto espacial:', error);
+//     }
+// );
 
-// Cargar el modelo satelite
-const ModeloSatelite = new OBJLoader();
-ModeloSatelite.load('./Modelos/ambientacion/satelite/SatelliteSubstancePainter.obj', function (object) {
-    if (object instanceof THREE.Object3D) {
-        object.traverse(function (child) {
-            if (child.isMesh) {
-                child.material = texturasatelite2;
-            }
-        });
-        object.position.set(250, 0, -50);
-        object.scale.set(10, 10, 10);
-        scene.add(object);
-    } else {
-        console.error('Error: El objeto cargado no es válido para agregar a la escena.');
-    }
-}, undefined, function (error) {
-    console.error('Error al cargar el modelo FBX:', error);
-});
+// // Cargar el modelo satelite
+// const ModeloSatelite = new OBJLoader();
+// ModeloSatelite.load('./Modelos/ambientacion/satelite/SatelliteSubstancePainter.obj', function (object) {
+//     if (object instanceof THREE.Object3D) {
+//         object.traverse(function (child) {
+//             if (child.isMesh) {
+//                 child.material = texturasatelite2;
+//             }
+//         });
+//         object.position.set(250, 0, -50);
+//         object.scale.set(10, 10, 10);
+//         scene.add(object);
+//     } else {
+//         console.error('Error: El objeto cargado no es válido para agregar a la escena.');
+//     }
+// }, undefined, function (error) {
+//     console.error('Error al cargar el modelo FBX:', error);
+// });
 
 
 // Cargar el modelo FBX
